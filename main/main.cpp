@@ -32,7 +32,7 @@
 /*********************
  *      DEFINES
  *********************/
-#define EXAMPLE_USE_EXTERNAL_STYLESHEET   (1)
+#define EXAMPLE_USE_EXTERNAL_STYLESHEET   (0)
 #if EXAMPLE_USE_EXTERNAL_STYLESHEET
   #if (DISP_HOR_RES == 1024) && (DISP_VER_RES == 600)
     #include "esp-ui-phone_1024_600_stylesheet/src/esp_ui_phone_1024_600_stylesheet.h"
@@ -126,14 +126,14 @@ int main(int argc, char **argv)
     // ESP_UI_CHECK_FALSE_RETURN(phone->getCoreHome().showContainerBorder(), 1, "Show container border failed");
 
     /* Install apps */
-    bool enable_navigation_bar = phone->getStylesheet()->home.flags.enable_navigation_bar;
+    bool enable_navigation_bar = true;
     PhoneAppSimpleConf *phone_app_simple_conf = new PhoneAppSimpleConf(true, enable_navigation_bar);
     ESP_UI_CHECK_NULL_RETURN(phone_app_simple_conf, 1, "Create phone app simple conf failed");
     ESP_UI_CHECK_FALSE_RETURN((phone->installApp(phone_app_simple_conf) >= 0), 1, "Install phone app simple conf failed");
     PhoneAppComplexConf *phone_app_complex_conf = new PhoneAppComplexConf(true, enable_navigation_bar);
     ESP_UI_CHECK_NULL_RETURN(phone_app_complex_conf, 1, "Create phone app complex conf failed");
     ESP_UI_CHECK_FALSE_RETURN((phone->installApp(phone_app_complex_conf) >= 0), 1, "Install phone app complex conf failed");
-    PhoneAppSquareline *phone_app_squareline = new PhoneAppSquareline(true, enable_navigation_bar);
+    PhoneAppSquareline *phone_app_squareline = new PhoneAppSquareline(true, false);
     ESP_UI_CHECK_NULL_RETURN(phone_app_squareline, 1, "Create phone app squareline failed");
     ESP_UI_CHECK_FALSE_RETURN((phone->installApp(phone_app_squareline) >= 0), 1, "Install phone app squareline failed");
 
@@ -165,8 +165,8 @@ static void on_clock_update_timer_cb(struct _lv_timer_t *t)
     localtime_r(&now, &timeinfo);
     is_time_pm = (timeinfo.tm_hour >= 12);
 
-    ESP_UI_CHECK_FALSE_EXIT(phone->getHome().getStatusBar()->setClock(timeinfo.tm_hour, timeinfo.tm_min, is_time_pm),
-                            "Refresh status bar failed");
+    // ESP_UI_CHECK_FALSE_EXIT(phone->getHome().getStatusBar()->setClock(timeinfo.tm_hour, timeinfo.tm_min, is_time_pm),
+    //                         "Refresh status bar failed");
 }
 
 /**
