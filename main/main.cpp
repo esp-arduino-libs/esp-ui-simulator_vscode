@@ -163,9 +163,15 @@ static void on_clock_update_timer_cb(struct _lv_timer_t *t)
     time(&now);
     localtime_r(&now, &timeinfo);
     is_time_pm = (timeinfo.tm_hour >= 12);
+    ESP_UI_CHECK_FALSE_EXIT(phone->getHome().getStatusBar()->setClock(timeinfo.tm_hour, timeinfo.tm_min, is_time_pm),
+                            "Refresh status bar failed");
 
-    // ESP_UI_CHECK_FALSE_EXIT(phone->getHome().getStatusBar()->setClock(timeinfo.tm_hour, timeinfo.tm_min, is_time_pm),
-    //                         "Refresh status bar failed");
+    lv_mem_monitor_t mon;
+    lv_mem_monitor(&mon);
+    uint32_t free_kb = mon.free_size / 1024;
+    uint32_t total_kb = mon.total_size / 1024;
+    ESP_UI_CHECK_FALSE_EXIT(phone->getHome().getRecentsScreen()->setMemoryLabel(free_kb, total_kb, 0, 0),
+                            "Refresh memory label failed");
 }
 
 /**
