@@ -30,7 +30,7 @@
  *      - ESP_UI_LOG_LEVEL_NONE:  No log output (least verbose)
  *
  */
-#define ESP_UI_LOG_LEVEL        (ESP_UI_LOG_LEVEL_INFO)
+#define ESP_UI_LOG_LEVEL        (ESP_UI_LOG_LEVEL_DEBUG)
 
 /* Enable debug logs for modules */
 #define ESP_UI_LOG_ENABLE_DEBUG_CORE                (1)
@@ -47,7 +47,7 @@
 #if ESP_UI_LOG_ENABLE_DEBUG_WIDGETS
 #define ESP_UI_LOG_ENABLE_DEBUG_WIDGETS_APP_LAUNCHER   (1)
 #define ESP_UI_LOG_ENABLE_DEBUG_WIDGETS_RECENTS_SCREEN (1)
-#define ESP_UI_LOG_ENABLE_DEBUG_WIDGETS_GESTURE        (1)
+#define ESP_UI_LOG_ENABLE_DEBUG_WIDGETS_GESTURE        (0)
 #define ESP_UI_LOG_ENABLE_DEBUG_WIDGETS_NAVIGATION     (1)
 #define ESP_UI_LOG_ENABLE_DEBUG_WIDGETS_STATUS_BAR     (1)
 #endif
