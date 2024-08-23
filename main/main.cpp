@@ -28,6 +28,7 @@
 #include "app_examples/phone/simple_conf/src/phone_app_simple_conf.hpp"
 #include "app_examples/phone/complex_conf/src/phone_app_complex_conf.hpp"
 #include "app_examples/phone/squareline/src/phone_app_squareline.hpp"
+#include "setting/Setting.hpp"
 
 /*********************
  *      DEFINES
@@ -126,7 +127,7 @@ int main(int argc, char **argv)
     /* Configure and begin the phone */
     ESP_UI_CHECK_FALSE_RETURN(phone->setTouchDevice(mouse_indev), 1, "Set touch device failed");
     ESP_UI_CHECK_FALSE_RETURN(phone->begin(), 1, "Begin failed");
-    // ESP_UI_CHECK_FALSE_RETURN(phone->getCoreHome().showContainerBorder(), 1, "Show container border failed");
+    ESP_UI_CHECK_FALSE_RETURN(phone->getCoreHome().showContainerBorder(), 1, "Show container border failed");
 
     /* Install apps */
     PhoneAppSimpleConf *phone_app_simple_conf = new PhoneAppSimpleConf(true, true);
@@ -138,9 +139,12 @@ int main(int argc, char **argv)
     PhoneAppSquareline *phone_app_squareline = new PhoneAppSquareline(true, true);
     ESP_UI_CHECK_NULL_RETURN(phone_app_squareline, 1, "Create phone app squareline failed");
     ESP_UI_CHECK_FALSE_RETURN((phone->installApp(phone_app_squareline) >= 0), 1, "Install phone app squareline failed");
+    AppSettings *setting = new AppSettings(true, true);
+    ESP_UI_CHECK_NULL_RETURN(setting, 1, "Create phone app squareline failed");
+    ESP_UI_CHECK_FALSE_RETURN((phone->installApp(setting) >= 0), 1, "Install phone app squareline failed");
 
     /* Create a timer to update the clock */
-    ESP_UI_CHECK_NULL_RETURN(lv_timer_create(on_clock_update_timer_cb, 1000, phone), 1, "Create clock update timer failed");
+    // ESP_UI_CHECK_NULL_RETURN(lv_timer_create(on_clock_update_timer_cb, 1000, phone), 1, "Create clock update timer failed");
 
     while(1) {
         /* Periodically call the lv_task handler.
