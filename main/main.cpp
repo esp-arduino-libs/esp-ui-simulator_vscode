@@ -29,6 +29,8 @@
 #include "app_examples/phone/complex_conf/src/phone_app_complex_conf.hpp"
 #include "app_examples/phone/squareline/src/phone_app_squareline.hpp"
 #include "setting/Setting.hpp"
+#include "game_2048/Game_2048.hpp"
+#include "calculator/Calculator.hpp"
 
 /*********************
  *      DEFINES
@@ -142,6 +144,12 @@ int main(int argc, char **argv)
     AppSettings *setting = new AppSettings(true, true);
     ESP_UI_CHECK_NULL_RETURN(setting, 1, "Create phone app squareline failed");
     ESP_UI_CHECK_FALSE_RETURN((phone->installApp(setting) >= 0), 1, "Install phone app squareline failed");
+    Game2048 *game2048 = new Game2048(true, true);
+    ESP_UI_CHECK_NULL_RETURN(game2048, 1, "Create phone app squareline failed");
+    ESP_UI_CHECK_FALSE_RETURN((phone->installApp(game2048) >= 0), 1, "Install phone app squareline failed");
+    Calculator *calculator = new Calculator(true, true);
+    ESP_UI_CHECK_NULL_RETURN(calculator, 1, "Create phone app squareline failed");
+    ESP_UI_CHECK_FALSE_RETURN((phone->installApp(calculator) >= 0), 1, "Install phone app squareline failed");
 
     /* Create a timer to update the clock */
     // ESP_UI_CHECK_NULL_RETURN(lv_timer_create(on_clock_update_timer_cb, 1000, phone), 1, "Create clock update timer failed");
