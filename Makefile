@@ -35,10 +35,16 @@ COMPONENTS_DIR 		:= ./components
 LVGL_DIR 			:= ${COMPONENTS_DIR}/lvgl
 LVGL_DRIVER_DIR 	:= ${COMPONENTS_DIR}/lv_drivers
 ESP_UI_DIR 			:= ${COMPONENTS_DIR}/esp-ui
-ESP_UI_APP_DIR 		:= ${COMPONENTS_DIR}/esp-ui-app
+ESP_UI_APP_DIR		:= ${COMPONENTS_DIR}/esp-ui-app
 ESP_UI_DATA_DIR 	:= ${COMPONENTS_DIR}/esp-ui-stylesheet
+ESP_UI_APPS_DIRS	:= ${ESP_UI_APP_DIR}/esp-ui-phone_app_settings/src
+ESP_UI_DATA_DIRS 	:= ${ESP_UI_DATA_DIR}/esp-ui-phone_320_240_stylesheet/src \
+					   ${ESP_UI_DATA_DIR}/esp-ui-phone_480_480_stylesheet/src \
+					   ${ESP_UI_DATA_DIR}/esp-ui-phone_800_480_stylesheet/src \
+					   ${ESP_UI_DATA_DIR}/esp-ui-phone_1024_600_stylesheet/src
 
-SRC_INCLUDE_DIRS 	:= ${MAIN_DIR} ${LVGL_DIR} ${LVGL_DRIVER_DIR} ${ESP_UI_DIR}/src ${ESP_UI_DATA_DIR} ${ESP_UI_APP_DIR}
+SRC_INCLUDE_DIRS 	:= ${MAIN_DIR} ${LVGL_DIR} ${LVGL_DRIVER_DIR} ${ESP_UI_DIR}/src ${ESP_UI_APPS_DIRS} \
+						${ESP_UI_DATA_DIRS}
 SRC_EXCLUDE_DIRS 	:= ${LVGL_DIR}/tests ${LVGL_DIR}/demos ${LVGL_DIR}/examples ${LVGL_DIR}/env_support
 INC_DIRS 			:= ${SRC_INCLUDE_DIRS} ${COMPONENTS_DIR}
 
@@ -93,7 +99,7 @@ LV_DRIVER_USE	:= USE_$(LV_DRIVER)
 endif
 
 # Add simulator defines to allow modification of source
-DEFINES				:= -D SIMULATOR=1 -D LV_BUILD_TEST=0 -D $(LV_DRIVER_USE) -D ESP_UI_KCONFIG_IGNORE
+DEFINES				:= -D ESP_UI_USE_SIMULATOR=1 -D LV_BUILD_TEST=0 -D $(LV_DRIVER_USE) -D ESP_UI_KCONFIG_IGNORE
 
 # Include simulator inc folder first so lv_conf.h from custom UI can be used instead
 INC 				:= $(patsubst %,-I%,$(INC_DIRS)) #-I/usr/include/freetype2 -L/usr/local/lib

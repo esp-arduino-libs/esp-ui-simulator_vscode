@@ -28,7 +28,7 @@
 #include "app_examples/phone/simple_conf/src/phone_app_simple_conf.hpp"
 #include "app_examples/phone/complex_conf/src/phone_app_complex_conf.hpp"
 #include "app_examples/phone/squareline/src/phone_app_squareline.hpp"
-#include "esp-ui-phone_app_settings/src/esp_ui_phone_app_settings.hpp"
+#include "esp_ui_phone_app_settings.hpp"
 
 /*********************
  *      DEFINES
@@ -36,16 +36,16 @@
 #define EXAMPLE_USE_EXTERNAL_STYLESHEET   (1)
 #if EXAMPLE_USE_EXTERNAL_STYLESHEET
   #if (DISP_HOR_RES == 1024) && (DISP_VER_RES == 600)
-    #include "esp-ui-phone_1024_600_stylesheet/src/esp_ui_phone_1024_600_stylesheet.h"
+    #include "esp_ui_phone_1024_600_stylesheet.h"
     #define EXAMPLE_ESP_UI_PHONE_DARK_STYLESHEET()   ESP_UI_PHONE_1024_600_DARK_STYLESHEET()
   #elif (DISP_HOR_RES == 800) && (DISP_VER_RES == 480)
-    #include "esp-ui-phone_800_480_stylesheet/src/esp_ui_phone_800_480_stylesheet.h"
+    #include "esp_ui_phone_800_480_stylesheet.h"
     #define EXAMPLE_ESP_UI_PHONE_DARK_STYLESHEET()   ESP_UI_PHONE_800_480_DARK_STYLESHEET()
   #elif (DISP_HOR_RES == 480) && (DISP_VER_RES == 480)
-    #include "esp-ui-phone_480_480_stylesheet/src/esp_ui_phone_480_480_stylesheet.h"
+    #include "esp_ui_phone_480_480_stylesheet.h"
     #define EXAMPLE_ESP_UI_PHONE_DARK_STYLESHEET()   ESP_UI_PHONE_480_480_DARK_STYLESHEET()
   #elif (DISP_HOR_RES == 320) && (DISP_VER_RES == 240)
-    #include "esp-ui-phone_320_240_stylesheet/src/esp_ui_phone_320_240_stylesheet.h"
+    #include "esp_ui_phone_320_240_stylesheet.h"
     #define EXAMPLE_ESP_UI_PHONE_DARK_STYLESHEET()   ESP_UI_PHONE_320_240_DARK_STYLESHEET()
   #endif
 #endif
