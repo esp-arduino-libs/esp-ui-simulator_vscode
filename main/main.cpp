@@ -50,6 +50,8 @@
   #endif
 #endif
 
+using namespace esp_ui::phone::app;
+
 /**********************
  *      TYPEDEFS
  **********************/
@@ -140,16 +142,16 @@ int main(int argc, char **argv)
     ESP_UI_CHECK_NULL_RETURN(phone_app_squareline, 1, "Create phone app squareline failed");
     ESP_UI_CHECK_FALSE_RETURN((phone->installApp(phone_app_squareline) >= 0), 1, "Install phone app squareline failed");
 
-    ESP_UI_PhoneAppSettings *phone_app_settings = new ESP_UI_PhoneAppSettings(true, true);
-    ESP_UI_CHECK_NULL_RETURN(phone_app_settings, 1, "Create phone app squareline failed");
-    ESP_UI_CHECK_FALSE_RETURN((phone->installApp(phone_app_settings) >= 0), 1, "Install phone app settings failed");
-    ESP_UI_PhoneAppSettingsStylesheet_t *phone_app_settings_stylesheet =
-                          new ESP_UI_PhoneAppSettingsStylesheet_t ESP_UI_PHONE_APP_SETTINGS_STYLESHEET_1024_600_DRAK();
-    ESP_UI_CHECK_FALSE_RETURN(phone_app_settings->addStylesheet(*phone_app_settings_stylesheet), 1,
+    Settings *app_settings = new Settings(true, true);
+    ESP_UI_CHECK_NULL_RETURN(app_settings, 1, "Create phone app squareline failed");
+    ESP_UI_CHECK_FALSE_RETURN((phone->installApp(app_settings) >= 0), 1, "Install phone app settings failed");
+    SettingsStylesheet *app_settings_stylesheet = new SettingsStylesheet SETTINGS_STYLESHEET_1024_600_DARK();
+    ESP_UI_CHECK_FALSE_RETURN(app_settings->addStylesheet(*app_settings_stylesheet), 1,
                               "Add phone app settings stylesheet failed");
 
+
     /* Create a timer to update the clock */
-    ESP_UI_CHECK_NULL_RETURN(lv_timer_create(on_clock_update_timer_cb, 1000, phone), 1, "Create clock update timer failed");
+    // ESP_UI_CHECK_NULL_RETURN(lv_timer_create(on_clock_update_timer_cb, 1000, phone), 1, "Create clock update timer failed");
 
     while(1) {
         /* Periodically call the lv_task handler.
