@@ -129,7 +129,7 @@ int main(int argc, char **argv)
     /* Configure and begin the phone */
     ESP_UI_CHECK_FALSE_RETURN(phone->setTouchDevice(mouse_indev), 1, "Set touch device failed");
     ESP_UI_CHECK_FALSE_RETURN(phone->begin(), 1, "Begin failed");
-    // ESP_UI_CHECK_FALSE_RETURN(phone->getCoreHome().showContainerBorder(), 1, "Show container border failed");
+    ESP_UI_CHECK_FALSE_RETURN(phone->getCoreHome().showContainerBorder(), 1, "Show container border failed");
 
     /* Install apps */
     PhoneAppSimpleConf *phone_app_simple_conf = new PhoneAppSimpleConf(true, true);
@@ -145,7 +145,7 @@ int main(int argc, char **argv)
     Settings *app_settings = new Settings(true, true);
     ESP_UI_CHECK_NULL_RETURN(app_settings, 1, "Create phone app squareline failed");
     ESP_UI_CHECK_FALSE_RETURN((phone->installApp(app_settings) >= 0), 1, "Install phone app settings failed");
-    SettingsStylesheet *app_settings_stylesheet = new SettingsStylesheet SETTINGS_STYLESHEET_1024_600_DARK();
+    SettingsStylesheet *app_settings_stylesheet = new SettingsStylesheet SETTINGS_UI_STYLESHEET_1024_600_DARK();
     ESP_UI_CHECK_FALSE_RETURN(app_settings->addStylesheet(*app_settings_stylesheet), 1,
                               "Add phone app settings stylesheet failed");
 
