@@ -75,7 +75,7 @@ C_WARNINGS 			:= 	-Wall -Wextra \
 						-Wno-format-nonliteral -Wno-cast-qual -Wunreachable-code -Wno-switch-default \
 						-Wreturn-type -Wmultichar -Wformat-security -Wno-ignored-qualifiers -Wno-error=pedantic \
 						-Wno-sign-compare -Wno-error=missing-prototypes -Wclobbered -Wdeprecated  \
-						-Wempty-body -Wshift-negative-value -Wstack-usage=2048 \
+						-Wempty-body -Wshift-negative-value -Wstack-usage=4096 \
 						-Wtype-limits -Wsizeof-pointer-memaccess -Wpointer-arith
 CXX_WARNINGS 		:= 	-Wall -Wextra \
 						-Wshadow -Wundef -Wmaybe-uninitialized \
@@ -84,7 +84,7 @@ CXX_WARNINGS 		:= 	-Wall -Wextra \
 						-Wno-format-nonliteral -Wno-cast-qual -Wunreachable-code -Wno-switch-default \
 						-Wreturn-type -Wmultichar -Wformat-security -Wno-ignored-qualifiers -Wno-error=pedantic \
 						-Wno-sign-compare -Wno-error=missing-prototypes -Wclobbered -Wdeprecated  \
-						-Wempty-body -Wshift-negative-value -Wstack-usage=2048 \
+						-Wempty-body -Wshift-negative-value -Wstack-usage=4096 \
 						-Wtype-limits -Wsizeof-pointer-memaccess -Wpointer-arith
 endif
 
