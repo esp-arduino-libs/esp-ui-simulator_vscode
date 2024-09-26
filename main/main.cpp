@@ -12,13 +12,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <time.h>
+#include <SDL2/SDL.h>
 #include "lv_drv_conf.h"
 #include "lvgl/lvgl.h"
-#include "lvgl/examples/lv_examples.h"
 #define SDL_MAIN_HANDLED /*To fix SDL's "undefined reference to WinMain" issue*/
-#include <SDL2/SDL.h>
 #include "lv_drivers/sdl/sdl.h"
-#include <time.h>
 #include "esp_brookesia.hpp"
 /* These are built-in app examples in `esp-brookesia` library */
 #include "app_examples/phone/simple_conf/src/phone_app_simple_conf.hpp"
