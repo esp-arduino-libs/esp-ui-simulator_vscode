@@ -20,10 +20,13 @@
 #include "lv_drivers/sdl/sdl.h"
 #include <time.h>
 #include "esp_brookesia.hpp"
+#include "esp_brookesia_apps.hpp"
 /* These are built-in app examples in `esp-brookesia` library */
 #include "app_examples/phone/simple_conf/src/phone_app_simple_conf.hpp"
 #include "app_examples/phone/complex_conf/src/phone_app_complex_conf.hpp"
 #include "app_examples/phone/squareline/src/phone_app_squareline.hpp"
+
+using namespace esp_brookesia::phone::app;
 
 /*********************
  *      DEFINES
@@ -137,6 +140,13 @@ int main(int argc, char **argv)
     PhoneAppSquareline *phone_app_squareline = new PhoneAppSquareline(true, true);
     ESP_BROOKESIA_CHECK_NULL_RETURN(phone_app_squareline, 1, "Create phone app squareline failed");
     ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(phone_app_squareline) >= 0), 1, "Install phone app squareline failed");
+
+    Settings *app_settings = new Settings(true, true);
+    ESP_BROOKESIA_CHECK_NULL_RETURN(app_settings, 1, "Create phone app squareline failed");
+    ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(app_settings) >= 0), 1, "Install phone app settings failed");
+    SettingsStylesheet *app_settings_stylesheet = new SettingsStylesheet SETTINGS_STYLESHEET_DARK();
+    ESP_BROOKESIA_CHECK_FALSE_RETURN(app_settings->addStylesheet(*app_settings_stylesheet), 1,
+                              "Add phone app settings stylesheet failed");
 
     /* Create a timer to update the clock */
     ESP_BROOKESIA_CHECK_NULL_RETURN(lv_timer_create(on_clock_update_timer_cb, 1000, phone), 1, "Create clock update timer failed");

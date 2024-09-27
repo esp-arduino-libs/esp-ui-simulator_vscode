@@ -45,7 +45,7 @@ set(COMPONENTS_DIR ${CMAKE_SOURCE_DIR}/components)
 set(LVGL_DIR ${COMPONENTS_DIR}/lvgl)
 set(LV_DRIVERS_DIR ${COMPONENTS_DIR}/lv_drivers)
 set(ESP_BROOKESIA_DIR ${COMPONENTS_DIR}/esp-brookesia/src)
-set(ESP_BROOKESIA_APP_DIR ${COMPONENTS_DIR}/esp-brookesia-app)
+set(ESP_BROOKESIA_APP_DIR ${COMPONENTS_DIR}/esp-brookesia-apps/src)
 set(ESP_BROOKESIA_STYLESHEET_DIR ${COMPONENTS_DIR}/esp-brookesia-stylesheet)
 
 # Include componets directories
