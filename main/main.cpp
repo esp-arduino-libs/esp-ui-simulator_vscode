@@ -144,9 +144,8 @@ int main(int argc, char **argv)
     Settings *app_settings = new Settings(true, true);
     ESP_BROOKESIA_CHECK_NULL_RETURN(app_settings, 1, "Create phone app squareline failed");
     ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(app_settings) >= 0), 1, "Install phone app settings failed");
-    SettingsStylesheet *app_settings_stylesheet = new SettingsStylesheet SETTINGS_STYLESHEET_DARK();
-    ESP_BROOKESIA_CHECK_FALSE_RETURN(app_settings->addStylesheet(*app_settings_stylesheet), 1,
-                              "Add phone app settings stylesheet failed");
+    SettingsStylesheet *app_settings_stylesheet = new SettingsStylesheet SETTINGS_STYLESHEET_800_480_DARK();
+    ESP_BROOKESIA_CHECK_FALSE_RETURN(app_settings->addStylesheet(*app_settings_stylesheet), 1, "Add phone app settings stylesheet failed");
 
     /* Create a timer to update the clock */
     ESP_BROOKESIA_CHECK_NULL_RETURN(lv_timer_create(on_clock_update_timer_cb, 1000, phone), 1, "Create clock update timer failed");
