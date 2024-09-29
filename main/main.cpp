@@ -112,6 +112,8 @@ int main(int argc, char **argv)
 
     ESP_BROOKESIA_LOGI("Using display resolution: %dx%d", DISP_HOR_RES, DISP_VER_RES);
 
+    ui_comp_init();
+
     /* Create a phone object */
     ESP_Brookesia_Phone *phone = new ESP_Brookesia_Phone(disp);
     ESP_BROOKESIA_CHECK_NULL_RETURN(phone, 1, "Create phone failed");
@@ -141,11 +143,14 @@ int main(int argc, char **argv)
     ESP_BROOKESIA_CHECK_NULL_RETURN(phone_app_squareline, 1, "Create phone app squareline failed");
     ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(phone_app_squareline) >= 0), 1, "Install phone app squareline failed");
 
-    Settings *app_settings = new Settings(true, true);
-    ESP_BROOKESIA_CHECK_NULL_RETURN(app_settings, 1, "Create phone app squareline failed");
-    ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(app_settings) >= 0), 1, "Install phone app settings failed");
-    SettingsStylesheet *app_settings_stylesheet = new SettingsStylesheet SETTINGS_STYLESHEET_800_480_DARK();
-    ESP_BROOKESIA_CHECK_FALSE_RETURN(app_settings->addStylesheet(*app_settings_stylesheet), 1, "Add phone app settings stylesheet failed");
+    // Settings *app_settings = new Settings(true, true);
+    // ESP_BROOKESIA_CHECK_NULL_RETURN(app_settings, 1, "Create phone app squareline failed");
+    // ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(app_settings) >= 0), 1, "Install phone app settings failed");
+    // SettingsStylesheet *app_settings_stylesheet = new SettingsStylesheet SETTINGS_STYLESHEET_800_480_DARK();
+    // ESP_BROOKESIA_CHECK_FALSE_RETURN(app_settings->addStylesheet(*app_settings_stylesheet), 1, "Add phone app settings stylesheet failed");
+
+    PhoneAppStore &app_store = PhoneAppStore::getInstance();
+    ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(app_store) >= 0), 1, "Install phone app store failed");
 
     /* Create a timer to update the clock */
     ESP_BROOKESIA_CHECK_NULL_RETURN(lv_timer_create(on_clock_update_timer_cb, 1000, phone), 1, "Create clock update timer failed");
