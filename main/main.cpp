@@ -144,10 +144,16 @@ int main(int argc, char **argv)
     ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(phone_app_squareline) >= 0), 1, "Install phone app squareline failed");
 
     Settings *app_settings = new Settings(true, true);
-    ESP_BROOKESIA_CHECK_NULL_RETURN(app_settings, 1, "Create phone app squareline failed");
-    ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(app_settings) >= 0), 1, "Install phone app settings failed");
-    SettingsStylesheet *app_settings_stylesheet = new SettingsStylesheet SETTINGS_STYLESHEET_800_480_DARK();
-    ESP_BROOKESIA_CHECK_FALSE_RETURN(app_settings->addStylesheet(*app_settings_stylesheet), 1, "Add phone app settings stylesheet failed");
+    ESP_BROOKESIA_CHECK_NULL_RETURN(app_settings, 1, "Create app settings failed");
+    SettingsStylesheetData *app_settings_stylesheet = new SettingsStylesheetData SETTINGS_STYLESHEET_DARK();
+    ESP_BROOKESIA_CHECK_NULL_RETURN(app_settings_stylesheet, 1, "Create app settings stylesheet failed");
+    ESP_BROOKESIA_CHECK_FALSE_RETURN(
+        app_settings->addStylesheet(phone, app_settings_stylesheet), 1, "Add app settings stylesheet failed"
+    );
+    ESP_BROOKESIA_CHECK_FALSE_RETURN(
+        app_settings->activateStylesheet(app_settings_stylesheet), 1, "Activate app settings stylesheet failed"
+    );
+    ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(app_settings) >= 0), 1, "Install app settings failed");
 
     // PhoneAppStore &app_store = PhoneAppStore::getInstance();
     // ESP_BROOKESIA_CHECK_FALSE_RETURN((phone->installApp(app_store) >= 0), 1, "Install phone app store failed");
