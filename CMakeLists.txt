@@ -8,7 +8,7 @@ set(DISP_DEF "-DDISP_HOR_RES=1024 -DDISP_VER_RES=600")  # Resolution of the disp
 set(LVGL_DEF "-DLV_CONF_INCLUDE_SIMPLE")                # Used for LVGL related codes
 set(LV_DRIVERS_DEF "-DUSE_SDL")                         # Used for lv_drivers related codes
 set(ESP_BROOKESIA_DEF "-DESP_BROOKESIA_KCONFIG_IGNORE") # Used for ESP-Brookesia related codes
-set(ESP_BROOKESIA_APP_DEF "-DESP_BROOKESIA_APP_PHONE_SETTINGS_HAL_DISABLE")
+set(ESP_BROOKESIA_APP_DEF "-DESP_BROOKESIA_APP_PHONE_SETTINGS_SIMULATOR")
                                                         # Used for ESP-Brookesia apps related codes
 # Set C/CXX toolchain
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")

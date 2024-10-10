@@ -130,7 +130,7 @@ int main(int argc, char **argv)
     /* Configure and begin the phone */
     ESP_BROOKESIA_CHECK_FALSE_RETURN(phone->setTouchDevice(mouse_indev), 1, "Set touch device failed");
     ESP_BROOKESIA_CHECK_FALSE_RETURN(phone->begin(), 1, "Begin failed");
-    // ESP_BROOKESIA_CHECK_FALSE_RETURN(phone->getCoreHome().showContainerBorder(), 1, "Show container border failed");
+    ESP_BROOKESIA_CHECK_FALSE_RETURN(phone->getCoreHome().showContainerBorder(), 1, "Show container border failed");
 
     /* Install apps */
     PhoneAppSimpleConf *phone_app_simple_conf = new PhoneAppSimpleConf(true, true);
